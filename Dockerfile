@@ -1,6 +1,11 @@
-FROM golang:1.15-alpine
+FROM golang1.15:alpine AS build
+
 RUN mkdir /app
 COPY . /app
 WORKDIR /app
-RUN go build -o myapp .
-CMD ["/app/myapp"]
+RUN CGO_ENABLED=0 GOOS=linux go build -o myapp
+
+###
+FROM scratch as final
+COPY --from=build /app/myapp .
+CMD ["/myapp"]
