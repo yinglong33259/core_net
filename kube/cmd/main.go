@@ -7,20 +7,20 @@ import (
 )
 
 func main() {
-	skel.PluginMain(cmdAdd, cmdCheck, cmdDel, version.All, "my core net plugin for kube!!!")
+	skel.PluginMain(cmdAdd, cmdCheck, cmdDel, version.All, "corenet")
 }
 
 func cmdAdd(args *skel.CmdArgs) error {
-	log.Info("Got a net add request")
+	log.WithField("reqParas", args).Info("Got a net add request")
 	return nil
 }
 
 func cmdCheck(args *skel.CmdArgs) error {
-	log.Info("Got a net check request")
+	log.WithField("reqParas", args).Info("Got a net check request")
 	return nil
 }
 
 func cmdDel(args *skel.CmdArgs) error {
-	log.Info("Got a net delete request")
+	log.WithField("reqParas", args).Info("Got a net delete request")
 	return nil
 }
